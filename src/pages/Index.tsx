@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -104,6 +105,7 @@ const faqData = [
 ];
 
 export default function Index() {
+  const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
   const [currentChat, setCurrentChat] = useState<User | null>(null);
@@ -164,10 +166,20 @@ export default function Index() {
             <a href="#faq" className="text-sm font-medium hover:text-primary transition-colors">FAQ</a>
             <a href="#contacts" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
           </nav>
-          <Button className="gradient-bg text-white border-0 hover:opacity-90">
-            <Icon name="LogIn" size={16} className="mr-2" />
-            Войти
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="outline"
+              onClick={() => navigate('/profile')}
+              className="hover-scale"
+            >
+              <Icon name="User" size={16} className="mr-2" />
+              Профиль
+            </Button>
+            <Button className="gradient-bg text-white border-0 hover:opacity-90">
+              <Icon name="LogIn" size={16} className="mr-2" />
+              Войти
+            </Button>
+          </div>
         </div>
       </header>
 
